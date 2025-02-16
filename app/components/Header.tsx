@@ -1,12 +1,10 @@
-import Image from 'next/image'
 import React from 'react'
+import Navbar from './Navbar'
 
 const Header = () => {
   return (
-    <div>
-        <div className=''>
-            <Image width={100} height={100} src={"/logo.png"} alt='Refeed'/>
-        </div>
+    <div className='flex gap-4 relative items-center'>
+        <Navbar/>
     </div>
   )
 }

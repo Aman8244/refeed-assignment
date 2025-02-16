@@ -2,6 +2,7 @@ import { ITasks } from '@/types/TaskInterface'
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
+
 export interface ArrayOfTasks {
     tasks: ITasks[];
 }
