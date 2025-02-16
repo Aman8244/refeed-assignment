@@ -22,11 +22,12 @@ export async function POST(request: NextRequest) {
     try {
         await DbConfig();
         const body = await request.json();
-        const { title, description, status } = body;
+        const { title, description, status,dueDate } = body;
         const task = await new Task({
             title,
             description,
-            status
+            status,
+            dueDate
         }).save();
         return NextResponse.json({
             data: task

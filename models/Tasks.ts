@@ -17,9 +17,13 @@ const taskSchema = new mongoose.Schema({
         type: String,
         enum: ['pending', 'in-progress', 'completed'],
         default: 'pending'
+    },
+    dueDate:{
+        type:Date,
+        required:true
     }
 });
 
-const Task = mongoose.models.Task || mongoose.model('Task', taskSchema);
+const Task = mongoose.models.Refeedtask || mongoose.model('Refeedtask', taskSchema);
 
 export default Task;

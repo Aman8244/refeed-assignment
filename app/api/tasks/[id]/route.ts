@@ -26,23 +26,17 @@ export async function PUT(request: NextRequest) {
         const id = request.url.slice(32, request.url.length);
         const objectId = new mongoose.Types.ObjectId(id);
         const body = await request.json();
-        const { title, description, status } = body;
+        const { title, description, status,dueDate } = body;
         let updatedTask;
-        if (title !== null || title !== undefined) {
+        if (id.length>1) {
             updatedTask = await Task.findOneAndUpdate({ id: objectId }, {
-                title: title
+                title,
+                description,
+                status,
+                dueDate
             });
         }
-        if (description !== null || description !== undefined) {
-            updatedTask = await Task.findOneAndUpdate({ id: objectId }, {
-                description: description
-            });
-        }
-        if (status !== null || status !== undefined) {
-            updatedTask = await Task.findOneAndUpdate({ id: objectId }, {
-                status: status
-            });
-        }
+
         return NextResponse.json({
             message: "Successfully Updated Task",
             data: updatedTask
