@@ -1,10 +1,17 @@
+"use client"
 import React from 'react'
 import Navbar from '../Navbar';
 import Header from '../Header';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Button } from '@/components/ui/button';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/app/store/store';
+import TaskCard from '../TaskCard';
 
 const HomePage = () => {
+  const tasks = useSelector((state: RootState) => state?.tasks?.tasks)
+  const dispatch = useDispatch()
+
+
   return (
     <div>
       <header>
@@ -29,7 +36,13 @@ const HomePage = () => {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="todo">
-              todo.
+              <div>
+                {tasks.map((el, key) => {
+                  return <div className='flex gap-5' key={key}>
+                    <TaskCard {...el} />
+                  </div>
+                })}
+              </div>
             </TabsContent>
             <TabsContent value="inprogress">
               in process.
