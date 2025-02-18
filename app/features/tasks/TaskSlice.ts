@@ -8,7 +8,7 @@ export interface ArrayOfTasks {
 }
 
 const fetchTasks = async (): Promise<ITasks[]> => {
-    const response = await fetch(`${process.env.Domain_URI}/api/tasks`, {
+    const response = await fetch("http://localhost:3000/api/tasks", {
         method: "GET",
     });
     const data = await response.json();
