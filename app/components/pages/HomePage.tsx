@@ -32,7 +32,7 @@ const HomePage = () => {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="todo">
-              <div className='grid grid-cols-3 gap-5'>
+              <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {[...tasks].sort(
                   (a, b) =>
                     new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
@@ -44,7 +44,7 @@ const HomePage = () => {
               </div>
             </TabsContent>
             <TabsContent value="inprogress">
-              <div className='grid grid-cols-3 gap-5'>
+              <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {[...tasks].sort(
                   (a, b) =>
                     new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
@@ -56,7 +56,7 @@ const HomePage = () => {
               </div>
             </TabsContent>
             <TabsContent value="done">
-              <div className='grid grid-cols-3 gap-5'>
+              <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {[...tasks].sort(
                   (a, b) =>
                     new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()

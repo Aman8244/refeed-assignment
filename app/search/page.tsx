@@ -71,7 +71,7 @@ const Search = () => {
                     </Select>
                 </div>
             </div>
-            <div className='grid my-6 grid-cols-3 gap-4'>
+            <div className='grid my-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {searchData?.map((el, key) => {
                     return <TaskCard index={key} {...el} key={key} />
                 })}
