@@ -65,11 +65,13 @@ const AddTask = () => {
         <div className='p-4'>
             <div>
                 <form onSubmit={handleSubmit} className='max-w-[90%] mx-[5%] mb-[3%]'>
-                    <div className='text-gray-600 flex items-center gap-4 cursor-pointer'>
-                        <div onClick={() => router.push("/")} className='hover:bg-gray-600 hover:text-black hover:rounded-full hover:p-2 cursor-pointer' >
-                            <ChevronLeft />
+                    <div className='text-gray-600 flex flex-col sm:flex-row sm:items-center gap-4 cursor-pointer'>
+                        <div className='flex gap-4 items-center'>
+                            <div onClick={() => router.push("/")} className='hover:bg-gray-600 hover:text-black hover:rounded-full hover:p-2 cursor-pointer' >
+                                <ChevronLeft />
+                            </div>
+                            <div onClick={() => router.push("/")} className='text-[18px]'> Add new task </div>
                         </div>
-                        <div onClick={() => router.push("/")} className='text-[18px]'> Add new task </div>
                         <div>
                             <Select value={status} onValueChange={setStatus} required>
                                 <SelectTrigger className="w-[180px]">

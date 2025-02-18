@@ -13,7 +13,7 @@ import { CalendarDaysIcon, HomeIcon, PlusIcon, Search } from "lucide-react";
 const Navbar = () => {
 
     return (
-        <div className="sticky top-0  flex items-center justify-center left-[37%] ">
+        <div className="sticky top-0  flex items-center justify-center w-full ">
             <NavigationMenu className="bg-transparent border-gray-600 border  py-2 px-12 rounded-[32px]">
                 <NavigationMenuList className="flex gap-10 ">
                     <NavigationMenuItem className="bg-transparent px-2">
