@@ -7,7 +7,7 @@ import {
     NavigationMenuList,
 } from "@/components/ui/navigation-menu"
 import Link from "next/link";
-import { CalendarDaysIcon, HomeIcon, PlusIcon } from "lucide-react";
+import { CalendarDaysIcon, HomeIcon, PlusIcon, Search } from "lucide-react";
 
 
 const Navbar = () => {
@@ -24,9 +24,9 @@ const Navbar = () => {
                         </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem className="bg-transparent px-2">
-                        <Link href="/calendar" legacyBehavior passHref>
+                        <Link href="/search" legacyBehavior passHref>
                             <NavigationMenuLink className={"bg-transparent "}>
-                                <CalendarDaysIcon className="text-gray-600 w-8 h-8" />
+                                <Search className="text-gray-600 w-8 h-8" />
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>

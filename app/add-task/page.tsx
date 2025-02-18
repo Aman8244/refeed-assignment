@@ -66,7 +66,9 @@ const AddTask = () => {
             <div>
                 <form onSubmit={handleSubmit} className='max-w-[90%] mx-[5%] mb-[3%]'>
                     <div className='text-gray-600 flex items-center gap-4 cursor-pointer'>
-                        <div onClick={() => router.push("/")}> <ChevronLeft /> </div>
+                        <div onClick={() => router.push("/")} className='hover:bg-gray-600 hover:text-black hover:rounded-full hover:p-2 cursor-pointer' >
+                            <ChevronLeft />
+                        </div>
                         <div onClick={() => router.push("/")} className='text-[18px]'> Add new task </div>
                         <div>
                             <Select value={status} onValueChange={setStatus} required>

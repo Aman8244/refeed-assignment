@@ -1,12 +1,12 @@
 "use client"
 import { RootState } from '@/app/store/store'
 import { ITasks } from '@/types/TaskInterface'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Edit, CalendarIcon, CircleDot, CircleEllipsis, CircleCheck } from "lucide-react";
+import { Edit, CalendarIcon, CircleDot, CircleEllipsis, CircleCheck, ChevronLeft } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { UpdateById } from '@/app/features/tasks/TaskSlice'
 import { Button } from '@/components/ui/button'
@@ -20,6 +20,7 @@ const TaskDetails = () => {
   const [editedTask, setEditedTask] = useState({ title: "", description: "", status: "", dueDate: new Date() });
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     const task = tasks.find((el) => el.id === id);
@@ -47,15 +48,21 @@ const TaskDetails = () => {
 
     if (response.ok) {
       setIsEditing(false);
-      dispatch(UpdateById({...editedTask,id:id}))
+      dispatch(UpdateById({ ...editedTask, id: id }))
     }
   };
 
   return (
     <div className="p-6 bg-white rounded-lg w-full max-w-[900px] mx-auto">
+      <div>
+
+      </div>
       {currentTask && (
         <div>
           <div className="flex items-center gap-4 mb-4">
+            <div onClick={() => router.push("/")} className='hover:bg-gray-600 hover:rounded-full hover:p-2 cursor-pointer' >
+              <ChevronLeft />
+            </div>
             {isEditing ? (
               <input
                 type="text"
@@ -64,12 +71,13 @@ const TaskDetails = () => {
                 className="text-3xl font-bold capitalize border p-2 rounded-md w-full"
               />
             ) : (
-              <h1 className="text-3xl font-bold capitalize">{currentTask.title}</h1>
+              <h1 className="text-3xl font-bold capitalize truncate " onClick={() => setIsEditing(true)} >{currentTask.title}</h1>
             )}
-            <Edit
+
+            {/* <Edit
               className="cursor-pointer text-gray-600 hover:text-black"
               onClick={() => setIsEditing(!isEditing)}
-            />
+            /> */}
           </div>
 
           <div className="mb-4">
@@ -81,27 +89,27 @@ const TaskDetails = () => {
                 rows={10}
               />
             ) : (
-              <p className="text-gray-700">{currentTask.description}</p>
+              <p className="text-gray-700" onClick={() => setIsEditing(true)} >{currentTask.description}</p>
             )}
           </div>
 
           <div className="flex items-center gap-4 mb-4">
-              <Select value={editedTask.status} onValueChange={(val) => handleChange("status",val )} >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder={`${editedTask.status}`} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="pending" className='text-red-500 font-semibold'>
-                    <div className='flex flex-row gap-2 items-center'> <CircleDot /> Pending </div>
-                  </SelectItem>
-                  <SelectItem value="in-progress" className='text-yellow-500 font-semibold'>
-                    <div className='flex flex-row gap-2 items-center'> <CircleEllipsis /> In Process </div>
-                  </SelectItem>
-                  <SelectItem value="completed" className='text-green-500 font-semibold'>
-                    <div className='flex flex-row gap-2 items-center'> <CircleCheck /> Completed </div>
-                  </SelectItem>
-                </SelectContent>
-              </Select>
+            <Select value={editedTask.status} onValueChange={(val) => handleChange("status", val)} >
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder={`${editedTask.status}`} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="pending" className='text-red-500 font-semibold'>
+                  <div className='flex flex-row gap-2 items-center'> <CircleDot /> Pending </div>
+                </SelectItem>
+                <SelectItem value="in-progress" className='text-yellow-500 font-semibold'>
+                  <div className='flex flex-row gap-2 items-center'> <CircleEllipsis /> In Process </div>
+                </SelectItem>
+                <SelectItem value="completed" className='text-green-500 font-semibold'>
+                  <div className='flex flex-row gap-2 items-center'> <CircleCheck /> Completed </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="flex items-center gap-4 mb-4">
@@ -120,13 +128,13 @@ const TaskDetails = () => {
           </div>
 
 
-            <Button
-              className=" text-white px-4 py-2 rounded-md"
-              onClick={handleUpdate}
-              disabled={!isEditing && editedTask.title === currentTask.title && editedTask.description === currentTask.description && editedTask.status === currentTask.status && editedTask.dueDate === currentTask.dueDate }
-            >
-              Save Changes
-            </Button>
+          <Button
+            className=" text-white px-4 py-2 rounded-md"
+            onClick={handleUpdate}
+            disabled={!isEditing && editedTask.title === currentTask.title && editedTask.description === currentTask.description && editedTask.status === currentTask.status && editedTask.dueDate === currentTask.dueDate}
+          >
+            Save Changes
+          </Button>
         </div>
       )}
     </div>

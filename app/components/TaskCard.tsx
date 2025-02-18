@@ -53,7 +53,7 @@ const TaskCard = ({ id, title, description, status, dueDate, index }: TaskCardPr
                 style={{ backgroundColor }}
             >
                 <CardHeader className='grid gap-2 grid-cols-8'>
-                    <CardTitle onClick={() => router.push(`/tasks/${id}`)} className='col-span-6  text-[1.6rem] truncate' >{title}</CardTitle>
+                    <CardTitle onClick={() => router.push(`/tasks/${id}`)} className='col-span-6 capitalize hover:text-gray-600 text-[1.6rem] truncate' >{title}</CardTitle>
                     <div className='flex col-span-1 items-center  text-[.875rem] rounded-[32px] justify-center '>
                         {status === "pending" ? <CircleDot className='' /> : status === "in-progress" ? <CircleEllipsis /> : <CircleCheck />}
                     </div>

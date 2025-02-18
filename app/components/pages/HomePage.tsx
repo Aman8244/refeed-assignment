@@ -20,20 +20,23 @@ const HomePage = () => {
         </div>
         <div>
           <Tabs defaultValue="todo" className="relative w-[100%]  ">
-            <TabsList className=' my-6 sticky flex items-center justify-center  top-2 h-[4rem] '>
-              <TabsTrigger className='text-[1.2rem]' value="todo">
+            <TabsList className=' my-6 sticky flex items-center justify-center  top-2  '>
+              <TabsTrigger className='' value="todo">
                 <>To do</>
               </TabsTrigger>
-              <TabsTrigger className='text-[1.2rem]' value="inprogress">
+              <TabsTrigger className='' value="inprogress">
                 <>In process</>
               </TabsTrigger>
-              <TabsTrigger className='text-[1.2rem]' value="done">
+              <TabsTrigger className='' value="done">
                 <>Done</>
               </TabsTrigger>
             </TabsList>
             <TabsContent value="todo">
               <div className='grid grid-cols-3 gap-5'>
-                {tasks.filter((el) => el.status !== "completed").map((el, key) => {
+                {[...tasks].sort(
+                  (a, b) =>
+                    new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
+                ).filter((el) => el.status !== "completed").map((el, key) => {
                   return <div className='' key={key}>
                     <TaskCard {...el} index={key} />
                   </div>
@@ -42,7 +45,10 @@ const HomePage = () => {
             </TabsContent>
             <TabsContent value="inprogress">
               <div className='grid grid-cols-3 gap-5'>
-                {tasks.filter((el) => el.status === "in-progress").map((el, key) => {
+                {[...tasks].sort(
+                  (a, b) =>
+                    new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
+                ).filter((el) => el.status === "in-progress").map((el, key) => {
                   return <div className='' key={key}>
                     <TaskCard {...el} index={key} />
                   </div>
@@ -51,7 +57,10 @@ const HomePage = () => {
             </TabsContent>
             <TabsContent value="done">
               <div className='grid grid-cols-3 gap-5'>
-                {tasks.filter((el) => el.status === "completed").map((el, key) => {
+                {[...tasks].sort(
+                  (a, b) =>
+                    new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
+                ).filter((el) => el.status === "completed").map((el, key) => {
                   return <div className='' key={key}>
                     <TaskCard {...el} index={key} />
                   </div>
